@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
+"""a module
 """
-module with helper function
-"""
-from typing import Tuple
 import csv
 import math
-from typing import List, Dict
+from typing import List, Tuple, Dict
 
 
 class Server:
@@ -37,26 +35,44 @@ class Server:
         if t[0] * t[1] > len(self.__dataset):
             return self.__dataset[t[0]:]
         return self.__dataset[t[0]:t[1]]
+        # assert type(page) == int and type(page_size) == int
+        # assert page > 0 and page_size > 0
+        # start, end = index_range(page, page_size)
+        # data = self.dataset()
+        # if start > len(data):
+        #     return []
+        # return data[start:end]
+        # assert type(page) is int and page > 0
+        # assert type(page_size) is int and page_size > 0
+
+        # indexes = index_range(page, page_size)
+        # try:
+        #     data = self.dataset()
+        #     return data[indexes[0]: indexes[1]]
+        # except IndexError:
+        #     return []
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
-        out_dic = {}
-        page_data = self.get_page(page, page_size)
-        out_dict["page_size"] = len(page_data)
-        out_dict["page"] = page
-        out_dict["data"] = page_data
-        out_dict["next_page"] = page + 1 if page * page_size < len(
+        myDict = {}
+        listy = self.get_page(page, page_size)
+        myDict["page_size"] = len(listy)
+        myDict["page"] = page
+        myDict["data"] = listy
+        myDict["next_page"] = page + 1 if page * page_size < len(
             self.__dataset) else None
-        out_dict["prev_page"] = page - 1 if not page == 1 else None
-        out_dict["total_pages"] = int(
+        myDict["prev_page"] = page - 1 if not page == 1 else None
+        myDict["total_pages"] = int(
             len(self.__dataset) / page_size) + 1 if not len(
                 self.__dataset) % page_size == 0 else len(
                     self.__dataset) / page_size
-        return out_dict
+        return myDict
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """index range
     """
-    Simple helper function
-    """
-    start = page_size * (page - 1)
-    return (start, start + page_size)
+    if page == 1:
+        return (0, page_size)
+    return ((page * page_size) - page_size, page * page_size)
+    # index_tuple = page_size * (page - 1), page * page_size
+    # return index_tuple
