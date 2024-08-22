@@ -14,7 +14,7 @@ class FIFOCache(BaseCaching):
         """
         inits the class
         """
-        super.__init__()
+        super().__init__()
 
     def put(self, key, item):
         """
@@ -25,7 +25,7 @@ class FIFOCache(BaseCaching):
             return
 
         if len(self.cache_data) >= self.MAX_ITEMS:
-            first_key = list(dic.keys())[0]
+            first_key = list(self.cache_data.keys())[0]
             del self.cache_data[first_key]
             print(f"DISCARD: {first_key}")
 
