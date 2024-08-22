@@ -40,9 +40,12 @@ class LRUCache(BaseCaching):
         gets item by key from cache
         """
         print(f"current list: {self.lru_list}")
+        if key in self.lru_list:
+            indx = self.lru_list.index(key)
+            k = self.lru_list[indx]
+            del self.lru_list[indx]
         if key is not None and key in list(self.cache_data.keys()):
-            if self.lru_list[0] != key:
-                self.lru_list.insert(0, key)
+            self.lru_list.insert(0, key)
             return self.cache_data[key]
 
         return None
