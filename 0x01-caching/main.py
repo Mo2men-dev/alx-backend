@@ -4,9 +4,13 @@
 LRUCache = __import__('3-lru_cache').LRUCache
 
 my_cache = LRUCache()
+my_cache.print_cache()
 my_cache.put("A", "Hello")
+my_cache.print_cache()
 my_cache.put("B", "World")
+my_cache.print_cache()
 my_cache.put("C", "Holberton")
+my_cache.print_cache()
 my_cache.put("D", "School")
 my_cache.print_cache()
 print(my_cache.get("B"))
