@@ -21,7 +21,7 @@ class LRUCache(BaseCaching):
         """
         sets item using the LRU policy
         """
-        
+
         if key is None or item is None:
             return
 
