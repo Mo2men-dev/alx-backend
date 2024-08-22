@@ -25,8 +25,6 @@ class LRUCache(BaseCaching):
         if key is None or item is None:
             return
 
-        print(f"current list: {self.lru_list}")
-
         if len(self.cache_data) >= self.MAX_ITEMS:
             lru_key = self.lru_list.pop()
             del self.cache_data[lru_key]
@@ -39,11 +37,12 @@ class LRUCache(BaseCaching):
         """
         gets item by key from cache
         """
-        print(f"current list: {self.lru_list}")
+
         if key in self.lru_list:
             indx = self.lru_list.index(key)
             k = self.lru_list[indx]
             del self.lru_list[indx]
+
         if key is not None and key in list(self.cache_data.keys()):
             self.lru_list.insert(0, key)
             return self.cache_data[key]
