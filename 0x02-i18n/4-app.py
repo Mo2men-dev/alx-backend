@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''Task 3: Parametrize templates
+'''Task 3: Force locale with URL parameter
 '''
 
 from flask import Flask, render_template
@@ -28,13 +28,16 @@ def get_locale() -> str:
     Returns:
         str: best match
     """
+    locale = request.args.get('locale', '').strip()
+    if locale and locale in Config.LANGUAGES:
+        return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
 def index():
     '''default route'''
-    return render_template("3-index.html",)
+    return render_template("4-index.html",)
 
 
 if __name__ == "__main__":
